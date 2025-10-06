@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import {storyblokInit, apiPlugin} from "@storyblok/react";
 import { StoryblokProvider } from "@/components/StoryblokProvider";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,9 +44,14 @@ export default function RootLayout({
     <StoryblokProvider>
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} bg-blue-50`}
       >
-        <div>Navbar Layout</div>
+        <header className="">
+          <nav className="container mx-auto px-4 w-full py-8 flex justify-between">
+            <Link href="/" className="">Home</Link>
+            <Link href="/projects" className="">Projects</Link>
+          </nav>
+        </header>
         {children}
       </body>
     </html>

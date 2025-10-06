@@ -24,9 +24,11 @@ const ProjectsPage = async () => {
   return (
   <div>
   <StoryblokStory story={story} />
-  {projects.map((projects) => (
-    <RecommendedProject story={projects} key={projects.content._uid} />
-    ))}
+    <div className={"grid md:grid-cols-2 gap-8 container mx-auto px-4 w-full py-16"}>
+      {projects.map((projects) => (
+        <RecommendedProject story={projects} key={projects.content._uid} />
+      ))}
+    </div>
   </div>
   )
 }
