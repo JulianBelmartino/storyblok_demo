@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 const cachedFetch = (input: any, init?:any) => {
   return fetch(input, {
     ...init,
-    cache: "no-store",
+    cache: process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
   })
 }
 
