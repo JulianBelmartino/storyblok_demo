@@ -1,19 +1,22 @@
 import { RecommendedProject } from "@/components/Recommended_project";
 import {getStoryblokApi, StoryblokStory} from "@storyblok/react/rsc";
+import { draftMode} from "next/headers";
 
 const fetchProjectsPage = async () => {
+    const {isEnabled }=  await draftMode();
     const client = getStoryblokApi();
     const response = await client.getStory(`projects`, {
-        version:process.env.NODE_ENV === "development" ? "draft" : "published",
+        version:process.env.NODE_ENV === "development" || isEnabled ? "draft" : "published",
     });
     return response.data.story
 }
 
 const fetchAllProjects = async () => {
+  const {isEnabled }=  await draftMode();
     const client = getStoryblokApi();
     const response = await client.getStories({
         content_type: "projects",
-        version: process.env.NODE_ENV === "development" ? "draft" : "published",
+        version: process.env.NODE_ENV === "development" || isEnabled ? "draft" : "published",
     });
     return response.data.stories;   
 }
